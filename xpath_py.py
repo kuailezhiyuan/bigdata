@@ -1,7 +1,24 @@
 from lxml import etree
+import datetime
 import requests
 from bs4 import BeautifulSoup
 import re
+
+def get_url(url):
+    soup = BeautifulSoup(gethtml(url), 'html5lib')
+    soup = soup.find_all("a")
+    l2=[]
+    for l in soup:
+        l2.append('http://home.klzy.me:8085'+l["href"])
+    return l2
+
+def getSortedValues(row):
+    sortedValues=[]#初始化为空list
+    keys=row.keys()
+    for key in keys:
+        sortedValues.append(row[key])
+    return sortedValues
+
 
 def gethtml(url):
     r=requests.get(url).text
@@ -10,10 +27,12 @@ def gethtml(url):
 def re_get(url,s_re):
     try:
         s = re.findall(s_re, gethtml(url))[0]
-        s.replace('\t', '').replace('\n', '').replace('\r', '').replace('\xa0', '').replace('|', '').strip()
     except:
         return ""
-    return s
+    return remove_char(s)
+
+def remove_char(str):
+    return str.replace("\t", '').replace("\xa0", '').replace("\r\n","").replace(" ","").strip()
 
 
 def get_text(url,xpath):
@@ -22,7 +41,8 @@ def get_text(url,xpath):
         html_data=html.xpath(xpath)[0]
     except:
         return ""
-    return html_data.replace('\t', '').replace('\n', '').replace('\r', '').replace('\xa0', '').replace('|', '').strip()
+    return remove_char(html_data)
+
 def list_add(url):
     dict={}
     dict["jobname"]=get_text(url,"//div[@class='cn']/h1/text()")

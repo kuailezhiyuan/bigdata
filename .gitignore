@@ -173,3 +173,7 @@ pip-selfcheck.json
 
 /data.csv
 
+.idea/bigdata.iml
+.idea/encodings.xml
+.idea/misc.xml
+.idea/modules.xml
