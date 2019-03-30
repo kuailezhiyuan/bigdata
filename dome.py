@@ -16,6 +16,7 @@ def get_page_str(url,id):
     print("\n[start] get_page_str: " + str(id))
     r=xpath_py.list_add(url)
     print("\n[end] get_page_str: " + str(id))
+    print(url,r)
     return r
 
 
@@ -28,7 +29,7 @@ def get_page_str(url,id):
 
 
 # 线程数
-executor = concurrent.futures.ThreadPoolExecutor(max_workers=10)
+executor = concurrent.futures.ThreadPoolExecutor(max_workers=None)
 futures = []
 # for i in range(5):
 #     f = executor.submit(fake_job, i, "lalala")
@@ -52,7 +53,7 @@ if __name__=="__main__":
         for url in r:
             if "51job" in url:
                 i=i+1
-                f = executor.submit(get_page_str, url,i)
+                f = executor.submit(get_page_str,url,i)
                 f2.append(f)
     re_html = [f.result() for f in f2]
 

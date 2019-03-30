@@ -32,12 +32,12 @@ def re_get(url,s_re):
     return remove_char(s)
 
 def remove_char(str):
-    return str.replace("\t", '').replace("\xa0", '').replace("\r\n","").replace(" ","").strip()
+    return str.replace('\t', '').replace('\n', '').replace('\r', '').replace('\xa0', '').replace(' ', '')
 
 
 def get_text(url,xpath):
+    html = etree.HTML(gethtml(url))
     try:
-        html=etree.HTML(gethtml(url))
         html_data=html.xpath(xpath)[0]
     except:
         return ""
@@ -60,3 +60,7 @@ def list_add(url):
 
 # url="https://home.klzy.me:8086/xueqing-web/51job/72396849.html"
 # print(list_add(url))
+
+if __name__=="__main__":
+    l=list_add("http://home.klzy.me:8085/xueqing-web/51job/97244043.html")
+    print(l)
