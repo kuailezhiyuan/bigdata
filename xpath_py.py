@@ -9,7 +9,8 @@ def get_url(url):
     soup = soup.find_all("a")
     l2=[]
     for l in soup:
-        l2.append('http://home.klzy.me:8085'+l["href"])
+        l2.append('http://10.255.46.97:8085'+l["href"])
+        # l2.append('http://home.klzy.me:8085' + l["href"])
     return l2
 
 def getSortedValues(row):
@@ -21,8 +22,15 @@ def getSortedValues(row):
 
 
 def gethtml(url):
-    r=requests.get(url).text
-    return r
+    headers = {
+        'Connection': 'close',
+    }
+    s = requests.Session()
+    tiantian_data = None
+    with requests.Session() as s:
+        result_data = s.get(url, headers=headers)
+    return result_data.text
+
 
 def re_get(url,s_re):
     try:

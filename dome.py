@@ -2,7 +2,8 @@ import concurrent.futures
 import xpath_py
 import csv
 import datetime
-baseurl="http://home.klzy.me:8085/xueqing-web/course/index/"
+baseurl="http://10.255.46.97:8085/xueqing-web/course/index/"
+# baseurl="http://home.klzy.me:8085/xueqing-web/course/index/"
 
 
 def get_page_url(baseurl,page) :
@@ -45,7 +46,7 @@ if __name__=="__main__":
         futures.append(f)
     results = [f.result() for f in futures]
 
-    # [print(r) for r in results]
+    [print(r) for r in results]
     f2 = []
     re_html=[]
     i=0
