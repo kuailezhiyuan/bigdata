@@ -6,12 +6,12 @@ from modle import db,Job,SQLAlchemy
 
 from sqlalchemy import or_
 
-words = ['%产品%', '%经理%',"%销售%"]
+words = ['%开发%', '%架构%',"%销售%"]
 
-print(*[Job.jobName.like(w) for w in words])
+# print(*[Job.jobName.like(w) for w in words])
 rule = or_(*[Job.jobName.like(w) for w in words])
-print(rule)
+# print(rule)
 t2=Job.query.filter(rule)
-print(t2)
+print(len(t2.all()))
 
 # print(db.session.query(Job).params(company="深圳市腾讯计算机系统有限公司").all())

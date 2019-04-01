@@ -20,8 +20,6 @@ def get_page_str(url,id):
     print(url,r)
     return r
 
-
-
 # def fake_job(id, dummy_data):
 #     print("[start] job: " + str(id))
 #     time.sleep(4)
