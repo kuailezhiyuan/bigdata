@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
-from app import app
-db = SQLAlchemy(app)
+
+db = SQLAlchemy()
 
 class Job(db.Model):
     # __tablename__="郁峻峰牛批"
@@ -18,6 +18,6 @@ class Job(db.Model):
     def __repr__(self):
         return '<company %r>' % self.company
 
-db.create_all()
+# db.create_all()
 
 
