@@ -62,7 +62,7 @@ def test_make():
     for l in list_jobname:
         r=db.session.query(Job).filter(Job.jobName==l).all()
         dict_job_num[l]=len(r)
-    print(dict_job_num)
+    # print(dict_job_num)
     series_list=[]
     for key,value in dict_job_num.items():
         series_list.append(make_list_series(key,value))
