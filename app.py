@@ -15,8 +15,9 @@ def init_db():
 
 @app.route('/')
 def hello():
-    resp=make_response(test_make())
-    resp.headers['Content-type'] = "application/json"
+    # resp=make_response(test_make())
+    resp=make_response(render_template("test.html",docontent=test_make()))
+    # resp.headers['Content-type'] = "application/json"
     resp.headers['Access-Control-Allow-Origin'] = '*'
     return resp
 

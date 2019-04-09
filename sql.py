@@ -52,6 +52,11 @@ def make_json(name:str,data:list,date:list,series:list):
     return j
 
 
+def make_dict(name:str,data:list,date:list,series:list):
+    dict_json={"name":name,"data":data,"date":date,"series":series}
+    return dict_json
+
+
 def test_make():
     list_jobname=[]
     r= db.session.query(Job).all()
@@ -66,7 +71,8 @@ def test_make():
     series_list=[]
     for key,value in dict_job_num.items():
         series_list.append(make_list_series(key,value))
-    j=make_json("岗位变化曲线",make_list_data(dict_job_num.keys()),["3-11"],series_list)
+    # j=make_json("岗位变化曲线",make_list_data(dict_job_num.keys()),["3-11"],series_list)
+    j= make_dict("岗位变化曲线", make_list_data(dict_job_num.keys()), ["3-11"], series_list)
     return j
 
 
